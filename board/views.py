@@ -2,10 +2,9 @@ from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 
-from board.form import BoardForm
 from .models import *
 import os
-from bsboard import settings
+
 
 
 def home(request):
@@ -94,9 +93,18 @@ def upload1(request):
     return HttpResponse('완료' + upload_file.name)
 
 def insert(request):
-    for i in range(1, 1001):
-        boardDb.objects.create(title='제목'+ str(i), content = '내용'+str(i))
+    if request.method == 'GET':
 
-    return HttpResponse('insert1000')
+        return render(request, 'board/writePage.html', {})
+    else:
+        title = request.POST['title']
+        content = request.POST['content']
+
+        boardDb.objects.create(title='title', content='content')
+
+        return render(request, 'board/board1.html',{})
+
+
+
 
 
