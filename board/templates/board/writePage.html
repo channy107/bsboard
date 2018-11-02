@@ -1,13 +1,22 @@
 {% extends 'board/home.html' %}
 {% block content %}
 {% csrf_token %}
+<h1>게시판1</h1>
 <div class="form-group">
     <br>
   <label for="comment">제목:</label>
   <textarea class="form-control" rows="1" id="title"></textarea>
 </div>
+<form method="post"
+      enctype="multipart/form-data">
+
+        <input type="file" name="my_file">
+        <br>
+
+
 <div class="form-group">
   <label for="comment">내용:</label>
   <textarea class="form-control" rows="10" id="comment"></textarea>
 </div>
+    <input type="submit" value="글쓰기완료">
 {% endblock %}
