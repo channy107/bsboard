@@ -1,0 +1,19 @@
+{% extends 'board/home.html' %}
+{% block content %}
+<form action="" method="post">
+    {% csrf_token %}
+    <h1>로그인</h1>
+    <div class="form-group">
+        <label for="id">ID:</label>
+        <input type="text" class="form-control" name="id">
+    </div>
+
+    <div class="form-group">
+        <label for="pw">Password:</label>
+        <input type="password" class="form-control" name="pw">
+    </div>
+    <button type="button" class="btn">
+        <a href="join">SIGN UP</a></button>
+    <button type="submit" class="btn">LOGIN</button>
+</form>
+{% endblock %}

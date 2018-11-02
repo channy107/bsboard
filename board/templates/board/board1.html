@@ -1,0 +1,36 @@
+{% extends 'board/home.html' %}
+{% block content %}
+<div class="container">
+  <h2>게시판1</h2>
+  <p>글을 작성해주세요</p>
+    <button type="button" class="btn"><a href="writePage">글쓰기</a></button>
+</form>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>John</td>
+        <td>Doe</td>
+        <td>john@example.com</td>
+      </tr>
+      <tr>
+        <td>Mary</td>
+        <td>Moe</td>
+        <td>mary@example.com</td>
+      </tr>
+      <tr>
+        <td>July</td>
+        <td>Dooley</td>
+        <td>july@example.com</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

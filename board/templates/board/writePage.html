@@ -1,0 +1,13 @@
+{% extends 'board/home.html' %}
+{% block content %}
+{% csrf_token %}
+<div class="form-group">
+    <br>
+  <label for="comment">제목:</label>
+  <textarea class="form-control" rows="1" id="title"></textarea>
+</div>
+<div class="form-group">
+  <label for="comment">내용:</label>
+  <textarea class="form-control" rows="10" id="comment"></textarea>
+</div>
+{% endblock %}
