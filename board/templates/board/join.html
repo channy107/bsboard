@@ -6,9 +6,7 @@
     <div class="form-group">
         <label for="id">ID:</label>
         <input type="text" class="form-control" name="id"><br>
-        <button type="submit" class="btn" onclick="id_check()">
-            중복확인
-        </button>
+        <button type="button" class="btn" onclick="id_check()">중복확인</button>
     </div>
 
     <div class="form-group">
@@ -21,4 +19,56 @@
     </div>
     <button type="submit" class="btn">가입하기</button>
 </form>
+{% load static %}
+<script src="{% static 'board/js/jquery.min.js' %}"></script>
+
+<script>
+    $('button[type=submit]').click(function() {
+        id_check()
+
+
+        id = $('input[name=id]').val()
+        pw = $('input[name=pw').val()
+        name = $('input[name=name]').val()
+
+        if(id == '') {
+            alert('ID를 입력해주세요.')
+            return false
+        } else if(pw == '') {
+            alert('비밀번호를 입력해주세요.')
+            return false
+        } else if(name == ''){
+            alert('이름을 입력해주세요.')
+            return false
+        }else{
+            $('form')[0].submit()
+        }
+
+        return false
+    })
+
+
+    function id_check(){
+        id = $('input[name=id]').val()
+        ct = $('input[name=csrfmiddlewaretoken]').val()
+        $.ajax({
+            // url: '/lotto/id_check',
+            url: '{% url 'id_check' %}',
+            type: 'post',
+            data: {'id':id,
+            'csrfmiddlewaretoken' : ct
+            },
+            success: function(res) {
+                alert(res.msg)
+
+            }
+
+        })
+    }
+</script>
+
 {% endblock %}
+
+
+
+

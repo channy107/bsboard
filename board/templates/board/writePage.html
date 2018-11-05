@@ -2,13 +2,13 @@
 {% block content %}
 {% csrf_token %}
 <h1>게시판1</h1>
-<form method="POST" action="/board/insert/">
+<form action="" method="POST">
     {% csrf_token %}
 
     <div class="form-group">
         <br>
-        <label for="comment">제목:</label>
-        <textarea class="form-control" rows="1" id="title"></textarea>
+        <label for="title">제목:</label>
+        <textarea class="form-control" rows="1" name="title"></textarea>
     </div>
     <form method="post"
           enctype="multipart/form-data">
@@ -18,8 +18,8 @@
 
 
         <div class="form-group">
-            <label for="comment">내용:</label>
-            <textarea class="form-control" rows="10" id="comment"></textarea>
+            <label for="content">내용:</label>
+            <textarea class="form-control" rows="10" name="content"></textarea>
         </div>
         <input type="submit" value="글쓰기완료">
 
