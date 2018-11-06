@@ -23,31 +23,6 @@
 <script src="{% static 'board/js/jquery.min.js' %}"></script>
 
 <script>
-    $('button[type=submit]').click(function() {
-        id_check()
-
-
-        id = $('input[name=id]').val()
-        pw = $('input[name=pw').val()
-        name = $('input[name=name]').val()
-
-        if(id == '') {
-            alert('ID를 입력해주세요.')
-            return false
-        } else if(pw == '') {
-            alert('비밀번호를 입력해주세요.')
-            return false
-        } else if(name == ''){
-            alert('이름을 입력해주세요.')
-            return false
-        }else{
-            $('form')[0].submit()
-        }
-
-        return false
-    })
-
-
     function id_check(){
         id = $('input[name=id]').val()
         ct = $('input[name=csrfmiddlewaretoken]').val()

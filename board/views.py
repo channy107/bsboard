@@ -2,7 +2,6 @@
 from django.core.paginator import Paginator
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
-
 from .models import *
 import os
 
@@ -55,8 +54,9 @@ def login(request):
 
         else:
             request.session['id'] = id
-            return redirect('/board/home')
-
+            return redirect('/board/afterlogin')
+def afterlogin(request):
+    return render(request, 'board/afterlogin.html', {})
 
 def board1(request):
     page = request.GET.get('page')
@@ -67,6 +67,11 @@ def board1(request):
     paginator = Paginator(board_list, 10)
     page_info = paginator.page(page)
     return render(request, 'board/board1.html', {'page_info': page_info})
+
+def detail(request):
+    key = request.GET['content']
+    content = boardDb.objects.get(id=key)
+    return render(request, 'board/detail.html',{'content':content})
 
 
 
@@ -80,33 +85,17 @@ def writePage(request):
         title = request.POST['title']
         content = request.POST['content']
 
-        b = boardDb(title=title, content=content)
+        upload_file=request.FILES['my_file']
+
+        with open("board/static/board/img"+'/'+upload_file.name,'wb') as file:
+            for chunk in upload_file.chunks():
+                file.write(chunk)
+
+        b = boardDb(title=title, content=content, file=upload_file.name)
         b.save()
 
         return redirect('/board/board1')
 
-        # return render(request, 'board/board1.html',
-        #               {'id':id,'title':title,'content':content})
-
-def upload1(request):
-    if request.method == 'GET':
-        return render(request, '', {})
-    else:
-        upload_file = request.FILES['my_file']
-
-        login_id = request.session['id']
-
-    try:
-        os.mkdir(login_id)
-    except FileExistsError:
-        pass
-
-    with open(login_id + '/' + upload_file.name,
-              'wb') as file:
-        for chunk in upload_file.chunks():
-            file.write(chunk)
-
-    return HttpResponse('완료' + upload_file.name)
 
 
 

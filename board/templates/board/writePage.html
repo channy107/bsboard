@@ -2,7 +2,7 @@
 {% block content %}
 {% csrf_token %}
 <h1>게시판1</h1>
-<form action="" method="POST">
+<form action="" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 
     <div class="form-group">
@@ -10,9 +10,6 @@
         <label for="title">제목:</label>
         <textarea class="form-control" rows="1" name="title"></textarea>
     </div>
-    <form method="post"
-          enctype="multipart/form-data">
-
         <input type="file" name="my_file">
         <br>
 
@@ -23,6 +20,5 @@
         </div>
         <input type="submit" value="글쓰기완료">
 
-    </form>
 </form>
 {% endblock %}

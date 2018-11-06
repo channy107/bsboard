@@ -15,7 +15,7 @@
         {% for board in page_info %}
         <tr>
             <td>{{ board.id }}</td>
-            <td>{{ board.title}}</td>
+            <td><a href="detail?content={{board.id}}" >{{ board.title}}</a></td>
             <td>{{ board.write_time}}</td>
         </tr>
         {% endfor %}

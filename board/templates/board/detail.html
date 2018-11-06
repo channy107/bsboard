@@ -1,0 +1,13 @@
+{% extends 'board/home.html' %}
+{% block content %}
+{% load static %}
+<div><h1>내용</h1>
+<img src="{% static 'board/img/'%}{{content.file}}" width="300" height="300">
+<br>
+<br>
+    {{content.content}}
+</div>
+
+
+
+{% endblock %}
